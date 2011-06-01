@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "validates_ip_format_of"
   gem.homepage = "http://github.com/RLovelett/validates_ip_format_of"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Validate the format of a IP by regexp in Ruby on Rails.}
+  gem.description = %Q{Rails plugin that provides a validates_ip_format_of method to ActiveRecord models. IPs are validated by regexp.}
   gem.email = "ryan@wahvee.com"
   gem.authors = ["Ryan Lovelett"]
   # dependencies defined in Gemfile
