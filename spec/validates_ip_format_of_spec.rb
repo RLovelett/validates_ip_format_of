@@ -1,59 +1,35 @@
-# encoding: utf-8
-require 'rubygems'
-require 'test/unit'
-require 'active_record'
-require "#{File.expand_path(File.dirname(__FILE__))}/../init.rb"
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 class Model
-  begin  # Rails 3
-    include ActiveModel::Validations
-    rescue NameError  # Rails 2.*
-    # ActiveRecord validations without database
-    # Thanks to http://www.prestonlee.com/archives/182
-    def save() end
-    def save!() end
-    def new_record?() false end
-    def update_attribute() end  # Needed by Rails 2.1.
-    def self.human_name() end
-    def self.human_attribute_name(_) end
-    def initialize
-      @errors = ActiveRecord::Errors.new(self)
-      def @errors.[](key)  # Return errors in same format as Rails 3.
-        Array(on(key))
-      end
-    end
-    def self.self_and_descendants_from_active_record() [self] end
-    def self.self_and_descendents_from_active_record() [self] end  # Needed by Rails 2.2.
-    include ActiveRecord::Validations
-  end
-
+  include ActiveModel::Validations
   extend ValidatesIpFormatOf
 
   attr_accessor :dhcp
-  validates_url_format_of :dhcp
+  validates_ip_format_of :dhcp
 
   attr_accessor :dns
-  validates_url_format_of :dns
+  validates_ip_format_of :dns
 
   attr_accessor :custom_ip
-  validates_url_format_of :custom_ip, :message => 'custom message'
+  validates_ip_format_of :custom_ip, :message => 'custom message'
+
 end
 
-class ValidatesUrlFormatOfTest < Test::Unit::TestCase
-
-  def setup
-    @model = Model.new
-  end
-
-  def test_should_allow_valid_ips
+describe ValidatesIpFormatOf do
+  before { @model = Model.new }
+  it "should allow valid IPs" do
     1000.times.each do
-      @model.dhcp = Faker::Internet.ip_v4_address
-      @model.valid?
-      assert @model.errors[:dhcp].empty?, "#{url.inspect} should have been accepted"
+      begin
+        ip = Faker::Internet.ip_v4_address
+      end while /^10.*|^172.*|^192.168.*/.match(ip)
+      @model.dhcp = ip
+      @model.valid?.should be_false
+      puts "#{@model.dhcp} fails validation" if @model.errors.has_key?(:dhcp)
+      @model.errors.should_not have_key(:dhcp)
     end
   end
 
-  def test_should_reject_invalid_urls
+  it "should reject invalid IPs" do
     [
       nil, 1, "", " ", "url",
       "www.example.com",
@@ -74,27 +50,27 @@ class ValidatesUrlFormatOfTest < Test::Unit::TestCase
       "54.5679.98.90"
     ].each do |url|
       @model.dns = url
-      @model.valid?
-      assert !@model.errors[:dns].empty?, "#{url.inspect} should have been rejected"
+      @model.valid?.should be_false
+      @model.errors.should have_key(:dns)
     end
   end
 
-  def test_require_publicly_routeable_ip4_addresses
-    private_ips_10 = 100.times.map { "http://10.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
-    private_ips_172 = 100.times.map { "http://172.#{Random.new.rand(16..31)}.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
-    private_ips_192 = 100.times.map { "http://192.168.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
-    reserved_ips = (private_ips_10 << private_ips_172 << private_ips_192 << "http://0.0.0.0" << "http://127.0.0.1").flatten
+  it "should require publicly routable IPv4 addresses" do
+    private_ips_10 = 100.times.map { "10.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
+    private_ips_172 = 100.times.map { "172.#{Random.new.rand(16..31)}.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
+    private_ips_192 = 100.times.map { "192.168.#{Random.new.rand(0..255)}.#{Random.new.rand(0..255)}" }
+    reserved_ips = (private_ips_10 << private_ips_172 << private_ips_192 << "0.0.0.0" << "127.0.0.1").flatten
     reserved_ips.each do |url|
       @model.dhcp = url
-      @model.valid?
-      assert !@model.errors[:dhcp].empty?, "#{url.inspect} should have been rejected"
+      @model.valid?.should be_false
+      @model.errors.should have_key(:dhcp)
     end
   end
 
-  def test_can_override_defaults
+  it "should override defaults" do
     @model.custom_ip = 'x'
-    @model.valid?
-    assert_equal ['custom message'], @model.errors[:custom_ip]
+    @model.valid?.should be_false
+    @model.errors.should have_key(:custom_ip)
+    @model.errors[:custom_ip].should include('custom message')
   end
-
 end
