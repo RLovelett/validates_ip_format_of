@@ -12,14 +12,14 @@ Known to be compatible with ActiveRecord 3.0.7.
 After installing the plugin, it's used like
 
     class User < ActiveRecord::Base
-      validates_url_format_of :dhcp,
+      validates_ip_format_of :dhcp,
                               :allow_nil => true,
                               :message => 'is completely unacceptable'
     end
 
 Takes the same arguments as [`validates_format_of`](http://api.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M001052) except for the `:with` regexp.
 
-Please note that the regexp used to validate URLs is not perfect, but hopefully good enough. See the test suite. Patches are very welcome.
+Please note that the regexp used to validate IPs is not perfect, but hopefully good enough. See the test suite. Patches are very welcome.
 
 ## Limitations and design choices
 
