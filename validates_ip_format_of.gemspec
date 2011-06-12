@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{validates_ip_format_of}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ryan Lovelett"]
-  s.date = %q{2011-06-01}
-  s.description = %q{Rails plugin that provides a validates_ip_format_of method to ActiveRecord models. IPs are validated by regexp.}
+  s.date = %q{2011-06-12}
+  s.description = %q{Rails plugin that provides a validates_ip_format_of method to ActiveRecord models. IPs are validated by regexp. IP validation. Validate IP.}
   s.email = %q{ryan@wahvee.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -25,10 +25,12 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "init.rb",
+    "rails/init.rb",
     "spec/spec_helper.rb",
-    "spec/validates_ip_format_of_spec.rb"
+    "spec/validates_ip_format_of_spec.rb",
+    "validates_ip_format_of.gemspec"
   ]
-  s.homepage = %q{http://github.com/RLovelett/validates_ip_format_of}
+  s.homepage = %q{http://github.com/wahvee/validates_ip_format_of}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
