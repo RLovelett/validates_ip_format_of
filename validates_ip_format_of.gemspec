@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "init.rb",
-    "rails/init.rb",
+    "lib/validates_ip_format_of.rb",
     "spec/spec_helper.rb",
     "spec/validates_ip_format_of_spec.rb",
     "validates_ip_format_of.gemspec"
