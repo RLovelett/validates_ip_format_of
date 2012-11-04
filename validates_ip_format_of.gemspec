@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rake", "~> 0.9.2.2"
   gem.add_development_dependency "rspec", "~> 2.11.0"
-  gem.add_development_dependency "faker", "~> 0.9.5"
+  gem.add_development_dependency "faker", "~> 1.1.2"
   gem.add_development_dependency "guard-rspec", "~> 2.1.0"
   gem.add_development_dependency "rb-fsevent", "~> 0.9.1"
   gem.add_development_dependency "terminal-notifier-guard", "~> 1.5.3"
