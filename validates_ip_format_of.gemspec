@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ValidatesIpFormatOf::VERSION
 
-  gem.add_dependency "activerecord", "~> 3.0.8"
+  gem.add_dependency "activerecord", "~> 3.2.8"
 
   gem.add_development_dependency "rake", "~> 0.9.2.2"
   gem.add_development_dependency "rspec", "~> 2.11.0"
