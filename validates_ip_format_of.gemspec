@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ValidatesIpFormatOf::VERSION
 
-  gem.add_dependency "activerecord", "~> 3.2.8"
+  gem.add_dependency "activerecord", ">= 3.0.0"
 
   gem.add_development_dependency "rake", "~> 0.9.2.2"
   gem.add_development_dependency "rspec", "~> 2.11.0"
@@ -23,4 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "guard-rspec", "~> 2.1.0"
   gem.add_development_dependency "rb-fsevent", "~> 0.9.1"
   gem.add_development_dependency "terminal-notifier-guard", "~> 1.5.3"
+  gem.add_development_dependency "appraisal", "~> 0.5.0"
 end

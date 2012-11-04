@@ -2,6 +2,13 @@
 
 Rails plugin that provides a `validates_ip_format_of` method to `ActiveRecord` models. IPs are validated by regexp.
 
+## ActiveRecord
+
+   * `~> 3.0.0`
+   * `~> 3.1.0`
+   * `~> 3.2.0`
+   * `master`
+
 ## Usage
 
 After installing the plugin, it's used like
