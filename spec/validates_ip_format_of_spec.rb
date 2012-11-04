@@ -24,8 +24,8 @@ describe ValidatesIpFormatOf do
       end while /^10.*|^172.*|^192.168.*/.match(ip)
       @model.dhcp = ip
       @model.valid?.should be_false
-      puts "#{@model.dhcp} fails validation" if @model.errors.has_key?(:dhcp)
-      @model.errors.should_not have_key(:dhcp)
+      puts "#{@model.dhcp} fails validation" if @model.errors.include?(:dhcp)
+      @model.errors.should_not include(:dhcp)
     end
   end
 
@@ -51,7 +51,7 @@ describe ValidatesIpFormatOf do
     ].each do |url|
       @model.dns = url
       @model.valid?.should be_false
-      @model.errors.should have_key(:dns)
+      @model.errors.should include(:dns)
     end
   end
 
@@ -63,14 +63,14 @@ describe ValidatesIpFormatOf do
     reserved_ips.each do |url|
       @model.dhcp = url
       @model.valid?.should be_false
-      @model.errors.should have_key(:dhcp)
+      @model.errors.should include(:dhcp)
     end
   end
 
   it "should override defaults" do
     @model.custom_ip = 'x'
     @model.valid?.should be_false
-    @model.errors.should have_key(:custom_ip)
+    @model.errors.should include(:custom_ip)
     @model.errors[:custom_ip].should include('custom message')
   end
 end
