@@ -4,6 +4,9 @@ Rails plugin that provides a `validates_ip_format_of` method to `ActiveRecord` m
 
 ## ActiveRecord
 
+Tests are run on Ruby 1.9.2, 1.9.3, and ruby-head. For each Ruby version
+the following versions of ActiveRecord are supported.
+
    * `~> 3.0.0`
    * `~> 3.1.0`
    * `~> 3.2.0`
