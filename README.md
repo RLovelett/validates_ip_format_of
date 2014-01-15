@@ -8,7 +8,6 @@ Tests are run on all versions listed.
 
 ### Rubies
 
-  * `1.9.2`
   * `1.9.3`
   * `head`
 
