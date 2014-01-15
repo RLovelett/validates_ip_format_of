@@ -1,4 +1,4 @@
-# validates\_ip\_format\_of [![Build Status](https://travis-ci.org/RLovelett/validates_ip_format_of.png?branch=master)](https://travis-ci.org/RLovelett/validates_ip_format_of)
+# validates\_ip\_format\_of [![Build Status](https://travis-ci.org/RLovelett/validates_ip_format_of.png?branch=master)](https://travis-ci.org/RLovelett/validates_ip_format_of) [![Gem Version](https://badge.fury.io/rb/validates_ip_format_of.png)](http://badge.fury.io/rb/validates_ip_format_of)
 
 Rails plugin that provides a `validates_ip_format_of` method to `ActiveRecord` models. IPs are validated by regexp.
 
