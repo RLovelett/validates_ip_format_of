@@ -4,6 +4,9 @@ class Model
   include ActiveModel::Validations
   extend ValidatesIpFormatOf
 
+  # Deprication warning
+  I18n.config.enforce_available_locales = true
+
   attr_accessor :dhcp
   validates_ip_format_of :dhcp
 
