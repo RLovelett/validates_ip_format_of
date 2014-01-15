@@ -45,6 +45,6 @@ By design, the plugin does not allow RFC 1918 IPv4 addresses, e.g., 10.0.0.0, 17
 
 ## Credits and license
 
-Based on my contributions made to `validates_url_format_of` written by [Henrik Nyh](https://github.com/henrik/validates_url_format_of), which is also released under the MIT license.
+Based on my contributions made to [`validates_url_format_of`](https://github.com/henrik/validates_url_format_of) written by [Henrik Nyh](https://github.com/henrik), which is also released under the MIT license.
 
 See LICENSE.md
