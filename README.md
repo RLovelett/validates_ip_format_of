@@ -9,6 +9,8 @@ Tests are run on all versions listed.
 ### Rubies
 
   * `1.9.3`
+  * `2.0.0`
+  * `2.1.0`
   * `head`
 
 ### ActiveRecord
